@@ -1,0 +1,50 @@
+{
+  "name": "Afnan Ahmed",
+  "roll_no": "25B0620",
+  "seed": 42,
+  "training_setup": {
+    "optimizer": "SGD with momentum=0.9 and weight_decay=0.0005",
+    "learning_rate_schedule": "CosineAnnealingLR",
+    "batch_size": 128,
+    "epochs": 60,
+    "augmentation": "RandomCrop(32, padding=4), RandomHorizontalFlip",
+    "gpu_used": "NVIDIA Tesla T4"
+  },
+  "task1": {
+    "noise_rate": 40.208,
+    "val_acc_noisy_labels__clean_ref_model": 94.52,
+    "val_acc_noisy_labels__noisy_ce_model": 49.66
+  },
+  "task2": {
+    "memorization_start_epoch": 40,
+    "early_stop_epoch": 39,
+    "val_acc_noisy_labels_at_early_stop": 55.2
+  },
+  "task3": {
+    "method": "Out-of-fold probability scoring: 1 - probability assigned to the observed noisy label; 5 folds"
+  },
+  "task4": {
+    "methods": [
+      {
+        "name": "Filtered Cross-Entropy (35% removed)",
+        "file": "t4_filtered_ce.csv",
+        "val_acc_noisy_labels": 56.42
+      },
+      {
+        "name": "Generalized Cross-Entropy (q=0.7)",
+        "file": "t4_gce.csv",
+        "val_acc_noisy_labels": 57.16
+      },
+      {
+        "name": "Label Smoothing (0.1)",
+        "file": "t4_label_smoothing.csv",
+        "val_acc_noisy_labels": 56.58
+      }
+    ],
+    "best_method": "Generalized Cross-Entropy (q=0.7)"
+  },
+  "task5": {
+    "val_acc_synthetic_labels__baseline": 49.66,
+    "val_acc_synthetic_labels__best_method": 50.7
+  }
+}
